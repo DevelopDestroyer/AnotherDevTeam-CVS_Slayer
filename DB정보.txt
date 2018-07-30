@@ -1,0 +1,67 @@
+﻿[csv_n_plus_one_goods]
+* 필드 및 설명
+  id : 레코드를 식별하기 위한 고유한 값
+  csv_name : 편의점명, (ex. gs25, cu, seven, emart, ministop)
+  item_name : 행사 대상품목명
+  category : n + 1에서 n의 값으로 어떤 카테고리인지 구분한다 (ex. 1, 2, 3)
+  price : 제품의 가격
+  image : 제품의 썸네일 이미지 링크
+  detail : 상세설명
+  date : 행사 날짜(파싱된 날짜 입력)
+
+
+[csv_bonus_goods]
+* 필드 및 설명
+  id : 레코드를 식별하기 위한 고유한 값
+  csv_name : 편의점명
+  default_item_name : 증정상품을 받기위해 구매해야하는 상품명
+  bonus_item_name : 증정상품명
+  price : 가격
+  default_item_image : 기본으로 사야하는 제품의 썸네일 이미지 링크
+  bonus_item_image : 증정제품의 썸네일 이미지 링크
+  detail : 상세설명
+  date : 행사 날짜(파싱된 날짜 입력)
+
+
+[csv_update_chec]
+* 필드
+ date
+* 필드 설명
+ date : 
+	- 오늘 파싱이 되어있는지 안되어있는지 조회하는 기능만 수행
+	- 예를들어 date 필드에 오늘 날짜가 들어있을 경우, 파싱을 수행하지 않는다.(오늘의 할인정보는 우리 DB에 이미 파싱되어 저장되어있을 것이다.)
+	- 만약 오늘 날짜가 들어있지 않을 경우, 파싱작업을 수행한다. 파싱작업이 수행이 완료된 후, data필드에 오늘 날짜를 입력해준다.
+	- 이 작업은, 무조건적인 외부사이트 접근을 안하게 됨으로써 ip차단 등의 이슈를 방지할 수 있다.
+
+
+
+////////////////////////////테이블 생성 쿼리////////////////////////////////
+CREATE TABLE csv_n_plus_one_goods ( 
+  id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  csv_name varchar(32) NOT NULL,
+  item_name varchar(32) NOT NULL,
+  category varchar(32) NOT NULL,
+  price int(10) NOT NULL,
+  image varchar(225),
+  detail varchar(225),  
+  upload_date varchar(32),
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE csv_bonus_goods ( 
+  id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  csv_name varchar(32) NOT NULL,
+  default_item_name varchar(32) NOT NULL,
+  bonus_item_name varchar(32) NOT NULL,
+  price int(10) NOT NULL,
+  default_item_image varchar(225),
+  bonus_item_image varchar(225),
+  detail varchar(225),
+  upload_date varchar(32),
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE csv_update_check( 
+  upload_date varchar(32) NOT NULL,
+  PRIMARY KEY (upload_date)
+);
