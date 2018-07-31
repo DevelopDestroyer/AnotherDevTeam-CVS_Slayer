@@ -1,4 +1,7 @@
-﻿[csv_n_plus_one_goods]
+﻿* 추가 아이디어 : 
+  그누보드/제로보드XE등을 활용하여 회원 및 게시판을 지원하는 것도 좋은 것 같음
+
+[csv_n_plus_one_goods]
 * 필드 및 설명
   id : 레코드를 식별하기 위한 고유한 값
   csv_name : 편의점명, (ex. gs25, cu, seven, emart, ministop)
