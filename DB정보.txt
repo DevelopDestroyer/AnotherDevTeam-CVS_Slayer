@@ -1,10 +1,10 @@
 ﻿* 추가 아이디어 : 
   그누보드/제로보드XE등을 활용하여 회원 및 게시판을 지원하는 것도 좋은 것 같음
 
-[csv_n_plus_one_goods]
+[cvs_n_plus_one_goods]
 * 필드 및 설명
   id : 레코드를 식별하기 위한 고유한 값
-  csv_name : 편의점명, (ex. gs25, cu, seven, emart, ministop)
+  cvs_name : 편의점명, (ex. gs25, cu, seven, emart, ministop)
   item_name : 행사 대상품목명
   category : n + 1에서 n의 값으로 어떤 카테고리인지 구분한다 (ex. 1, 2, 3)
   price : 제품의 가격
@@ -13,10 +13,10 @@
   date : 행사 날짜(파싱된 날짜 입력)
 
 
-[csv_bonus_goods]
+[cvs_bonus_goods]
 * 필드 및 설명
   id : 레코드를 식별하기 위한 고유한 값
-  csv_name : 편의점명
+  cvs_name : 편의점명
   default_item_name : 증정상품을 받기위해 구매해야하는 상품명
   bonus_item_name : 증정상품명
   price : 가격
@@ -26,7 +26,7 @@
   date : 행사 날짜(파싱된 날짜 입력)
 
 
-[csv_update_chec]
+[cvs_update_chec]
 * 필드
  date
 * 필드 설명
@@ -39,9 +39,9 @@
 
 
 ////////////////////////////테이블 생성 쿼리////////////////////////////////
-CREATE TABLE csv_n_plus_one_goods ( 
+CREATE TABLE cvs_n_plus_one_goods ( 
   id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  csv_name varchar(32) NOT NULL,
+  cvs_name varchar(32) NOT NULL,
   item_name varchar(32) NOT NULL,
   category varchar(32) NOT NULL,
   price int(10) NOT NULL,
@@ -51,9 +51,9 @@ CREATE TABLE csv_n_plus_one_goods (
   PRIMARY KEY (id)
 );
 
-CREATE TABLE csv_bonus_goods ( 
+CREATE TABLE cvs_bonus_goods ( 
   id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  csv_name varchar(32) NOT NULL,
+  cvs_name varchar(32) NOT NULL,
   default_item_name varchar(32) NOT NULL,
   bonus_item_name varchar(32) NOT NULL,
   price int(10) NOT NULL,
@@ -64,7 +64,7 @@ CREATE TABLE csv_bonus_goods (
   PRIMARY KEY (id)
 );
 
-CREATE TABLE csv_update_check( 
-  upload_date varchar(32) NOT NULL,
-  PRIMARY KEY (upload_date)
+CREATE TABLE cvs_update_check( 
+  cvs_name varchar(32) NOT NULL,
+  upload_date varchar(32) NOT NULL
 );
