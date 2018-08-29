@@ -6,30 +6,24 @@
 <?php
   include "Snoopy.class.php";
 
-  $today = date("Ymd");
-  $isHaveItem = false;
 //leeth99.dothome.co.kr
   $connect = mysql_connect('localhost','leeth99','djskej11');
   $db = mysql_select_db('leeth99', $connect);
   $sql = "set names utf8";
   $result = mysql_query($sql, $connect);
 
-  $sql = "select * from cvs_update_check where cvs_name='cu' and upload_date='".$today."'";
+  $sql = "select * from csv_n_plus_one_goods";
   $result = mysql_query($sql, $connect);
-
   while($row = mysql_fetch_row($result)){
-    $isHaveItem = true;
-/*
     echo "<b>편의점명</b> : ".$row[1]."<br>";
     echo "<b>상품명</b> : ".$row[2]."<br>";
     echo "<b>가격</b> : ".$row[4]."<br><hr>";
-*/
 
   }
 
 
 $PageRequestCount = 1;
-while($isHaveItem==false){
+while(1){
   $vars = array(
   "pageIndex"=>$PageRequestCount,
   "listType"=>"1"
@@ -62,17 +56,6 @@ $PageRequestCount++;
 echo "<br>-------------------------------------------------------<br>";
 
 foreach ($parse_node as $value) {
-  $parse_n_plus = 1;
-  if(strpos($value, "1+1") !== false) {
-      $parse_n_plus = 1;
-  }
-  else if(strpos($value, "2+1") !== false) {
-      $parse_n_plus = 2;
-  }
-  else if(strpos($value, "3+1") !== false) {
-      $parse_n_plus = 3;
-  }
-
   $parse_img_tmp = splitBetweenStr($value,"<img src=\"","\" alt");
   $parse_name_tmp = splitBetweenStr($value,"<p class=\"prodName\">","</a></p>");
   $parse_name_tmp2 = explode(">",$parse_name_tmp[0]);
@@ -91,10 +74,6 @@ foreach ($parse_node as $value) {
 
   echo "item".$cnt." : ".$parse_img[$cnt].", ".$parse_name[$cnt].", ".$parse_price[$cnt]."<br>";
 
-
-  $sql = "INSERT INTO cvs_n_plus_one_goods(cvs_name, item_name, category, price, image, detail, upload_date) VALUES('cu', '".$parse_name[$cnt]."', '".$parse_n_plus."',".$parse_price[$cnt].",'".$parse_img[$cnt]."','','".$today."')";
-  $result = mysql_query($sql, $connect);
-
   //$sql .= "('daum','".$daily[$date]."','".$today."','[".$parse_author_tmp[0]."] ".$parse_title_tmp[0]."','http://webtoon.daum.net/m/webtoon/view/".$parse_url_tmp[0]."','".$parse_image_tmp[0]."'),";
   $cnt++;
 
@@ -106,11 +85,6 @@ foreach ($parse_node as $value) {
 
 }
 }//while문 끝
-
-if($isHaveItem == false){
-  $sql = "INSERT INTO cvs_update_check(cvs_name, upload_date) VALUES('cu','".$today."')";
-  $result = mysql_query($sql, $connect);
-}
 //업데이트 종료
   /*
   $snoopy = new Snoopy;
