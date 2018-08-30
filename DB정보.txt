@@ -20,6 +20,7 @@
   default_item_name : 증정상품을 받기위해 구매해야하는 상품명
   bonus_item_name : 증정상품명
   price : 가격
+  bonus_price : 보너스제품의 원래 가격
   default_item_image : 기본으로 사야하는 제품의 썸네일 이미지 링크
   bonus_item_image : 증정제품의 썸네일 이미지 링크
   detail : 상세설명
@@ -57,6 +58,7 @@ CREATE TABLE cvs_bonus_goods (
   default_item_name varchar(32) NOT NULL,
   bonus_item_name varchar(32) NOT NULL,
   price int(10) NOT NULL,
+  bonus_price int(10) NOT NULL,
   default_item_image varchar(225),
   bonus_item_image varchar(225),
   detail varchar(225),
