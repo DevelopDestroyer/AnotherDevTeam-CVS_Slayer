@@ -56,8 +56,9 @@
   $snoopy->submit("http://gs25.gsretail.com/gscvs/ko/products/event-goods-search?CSRFToken=".$parse_node[0], $vars2);
 
   $res = $snoopy->results;
-  echo "show me the result : ".$res."<br><br>";
-
+  //echo "show me the result : ".$res."<br><br>";
+  $res_array = json_decode($res, true);
+  print_r($res_array);
   //$res = iconv("EUC-KR","UTF-8",$res);
 
   //echo "show me the result : ".$res;
