@@ -57,8 +57,23 @@
 
   $res = $snoopy->results;
   //echo "show me the result : ".$res."<br><br>";
-  $res_array = json_decode($res, true);
+  $res_array = json_decode($res);
   print_r($res_array);
+  echo "<br>--------------------------------------------------------------------</br>";
+  //echo $res_array->results.length."<br>";
+  print_r($res_array->results[0]);
+  echo "<br>--------------------------------------------------------------------</br>";
+  echo count($res_array->results);
+  echo "<br>--------------------------------------------------------------------</br>";
+  echo $res_array->results[100]->eventTypeNm;
+  echo $res_array->results[100]->goodsNm;
+  echo $res_array->results[100]->goodsStatNm;
+  echo $res_array->results[100]->price;
+
+  //for($i = 0; $i < $res_array->results.length; $i++){
+  //  echo "*name : ".$res_array->results[$i]->goodsNm.", ".$res_array->results[$i]->eventTypeNm.", ".$res_array->results[$i]->price."<br>";
+
+  //}
   //$res = iconv("EUC-KR","UTF-8",$res);
 
   //echo "show me the result : ".$res;
